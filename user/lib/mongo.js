@@ -1,4 +1,4 @@
-const mongo = require('./mongo-smpl')
+const mongo = require('ardhihdra-mongo-smpl')
 
 const client = new mongo.init('127.0.0.1','27017','admin','admin','sejutacita')
 
