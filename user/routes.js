@@ -1,4 +1,4 @@
-const {checkCreateUser, checkEditUser, checkDeleteUser} = require('./lib/middleware')
+const { isRole, checkCreateUser, checkGetUser} = require('./lib/middleware')
 const handler = require('./handler/main')
 
 function error(err, req, res, next) {
@@ -19,19 +19,19 @@ const initRoute = (app) => {
         next();
     });
      
-    app.get('/', [], (req, res, next) => {
+    app.get('/:_id?', checkGetUser, (req, res, next) => {
         handler.handleGet(req, res, next)
     })
     
-    // app.post('/', checkCreateUser(), (req, res, next) => {
-    //     handler.handleCreate(req, res, next)
-    // })
+    app.post('/', checkCreateUser(), (req, res, next) => {
+        handler.handleCreate(req, res, next)
+    })
 
-    app.put('/', checkEditUser, (req, res, next) => {
+    app.put('/', isRole('admin'), (req, res, next) => {
         handler.handleUpdate(req, res, next)
     })
 
-    app.delete('/', checkDeleteUser, (req, res, next) => {
+    app.delete('/:_id', isRole('admin'), (req, res, next) => {
         handler.handleDelete(req, res, next)
     })
 

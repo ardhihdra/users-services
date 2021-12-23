@@ -1,5 +1,6 @@
 const mongo = require('ardhihdra-mongo-smpl')
-
+const dotenv = require('dotenv')
+dotenv.config()
 
 const connString = process.env.MONGODB_CONNSTRING;
 const client = new mongo.init({connString: connString})

@@ -1,9 +1,18 @@
-example using httpie
+# example using httpie
 
-http :3000/ name==ardhi
+## GET ALl users (for admin)
+http :3010/ Authorization:
 
-http -f --json POST :3000/ name=cinta email=cinta@ardhi.com pwd=test role=client
+## Get user by id
+http :3010/61c47ecf7c5b19e64768a532 Authorization:'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWM0N2VjZjdjNWIxOWU2NDc2OGE1MzIiLCJ1c2VybmFtZSI6ImFyZGhpaGRyYSIsImVtYWlsIjoiY2ludGFAYXJkaGkuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjQwMjc2OTM0LCJleHAiOjE2NDM4NzY5MzR9.Wzi1yVGGONiut_q1rC07Yp7QLke3pqpkVwQpOMEWltw'
 
-http PUT :3000/ _id==61c3313617d751b266560a32 pwd==test2
+http :3010/61c495ded87fb1f855ffc11b Authorization:'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWM0OTVkZWQ4N2ZiMWY4NTVmZmMxMWIiLCJ1c2VybmFtZSI6ImpvaG5kb2UiLCJlbWFpbCI6Imthc2loQGFyZGhpLmNvbSIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE2NDAyNzMzODgsImV4cCI6MTY0Mzg3MzM4OH0.9VgLscX_0b58NT_z2pPgfinVQnhf3mdfck1aKFWNxhc'
 
-http DELETE :3000/ _id=61c3313617d751b266560a32
+## Create User 
+http -f --json POST :3010/ username=cekk role=user pwd=cekk email=cek@cek.com Authorization:'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWM0N2VjZjdjNWIxOWU2NDc2OGE1MzIiLCJ1c2VybmFtZSI6ImFyZGhpaGRyYSIsImVtYWlsIjoiY2ludGFAYXJkaGkuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjQwMjc2OTM0LCJleHAiOjE2NDM4NzY5MzR9.Wzi1yVGGONiut_q1rC07Yp7QLke3pqpkVwQpOMEWltw'
+
+## Update User 
+http PUT :3010/ _id==61c495ded87fb1f855ffc11b email==john@ardhi.com Authorization:'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWM0N2VjZjdjNWIxOWU2NDc2OGE1MzIiLCJ1c2VybmFtZSI6ImFyZGhpaGRyYSIsImVtYWlsIjoiY2ludGFAYXJkaGkuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjQwMjc2OTM0LCJleHAiOjE2NDM4NzY5MzR9.Wzi1yVGGONiut_q1rC07Yp7QLke3pqpkVwQpOMEWltw'
+
+## Delete User
+http DELETE :3010/61c4a6dd26d0806c8c49fb26 Authorization:'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWM0N2VjZjdjNWIxOWU2NDc2OGE1MzIiLCJ1c2VybmFtZSI6ImFyZGhpaGRyYSIsImVtYWlsIjoiY2ludGFAYXJkaGkuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjQwMjc2OTM0LCJleHAiOjE2NDM4NzY5MzR9.Wzi1yVGGONiut_q1rC07Yp7QLke3pqpkVwQpOMEWltw'
