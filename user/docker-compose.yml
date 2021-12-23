@@ -1,0 +1,21 @@
+version: '3'
+services:
+  users:
+    image: sejutacita-users
+    environment:
+      - MONGODB_CONNSTRING=mongodb://admin:admin@mongodb/sejutacita
+      - PORT=3000
+    ports:
+      - 3000:3000
+  auth:
+    image: sejutacita-auth
+    environment:
+      - MONGODB_CONNSTRING=mongodb://admin:admin@mongodb/sejutacita
+      - PORT=3001
+    ports:
+      - 3001:3001
+  mongodb:
+    image: mongo:5.0
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin

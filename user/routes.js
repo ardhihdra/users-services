@@ -15,6 +15,7 @@ const initRoute = (app) => {
         //CORS handling
         res.header('Access-Control-Allow-Origin', process.env.CLIENT_DOMAIN || "*"); 
         res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization');
+        res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, OPTIONS, DELETE');
         next();
     });
      
@@ -22,10 +23,9 @@ const initRoute = (app) => {
         handler.handleGet(req, res, next)
     })
     
-    app.post('/', checkCreateUser(), (req, res, next) => {
-        console.log('apa lagi', req.body)
-        handler.handleCreate(req, res, next)
-    })
+    // app.post('/', checkCreateUser(), (req, res, next) => {
+    //     handler.handleCreate(req, res, next)
+    // })
 
     app.put('/', checkEditUser, (req, res, next) => {
         handler.handleUpdate(req, res, next)
