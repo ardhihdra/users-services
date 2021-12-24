@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sjcita-mongo-deployment
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: sjcita-mongo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: sjcita-mongo
+    spec:
+      containers:
+        # by default, the image is pulled from docker hub
+        - image: 978879/sejutacita-mongo
+          name: mongo
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongo-persistent-storage
+              mountPath: /data/db
+      volumes:
+        - name: mongo-persistent-storage
+          persistentVolumeClaim:
+            claimName: sjcita-mongo-pv-claim

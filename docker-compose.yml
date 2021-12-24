@@ -8,7 +8,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=admin
   auth:
     container_name: sejutacita-auth
-    image: sejutacita-auth
+    image: 978879/sejutacita-auth
     environment:
       - MONGODB_CONNSTRING=mongodb://admin:admin@mongodb/sejutacita?authSource=admin
       - TOKEN_SECRET=2b3cb8583ad3470dea55417c55ac0a1cd343c70a70f799728588043b9194d3c676234743a223807fe3884d5aecbb82ff3ad0cddacd14fde6188bdd2749fffff6
@@ -17,7 +17,7 @@ services:
       - 3011:80
   users:
     container_name: sejutacita-users
-    image: sejutacita-users
+    image: 978879/sejutacita-users
     environment:
       - MONGODB_CONNSTRING=mongodb://admin:admin@mongodb/sejutacita?authSource=admin
       - PORT=80

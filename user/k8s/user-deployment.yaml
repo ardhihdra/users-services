@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-sjcita-deployment
+  namespace: default
+  labels:
+    app: user-sjcita
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-sjcita
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: disabled
+      labels:
+        app: user-sjcita
+    spec:
+      containers:
+        - image: 978879/sejutacita-mongo
+          imagePullPolicy: Always
+          name: user-sjcita
+          ports:
+            - containerPort: 3011
+          env:
+            - name: MONGODB_CONNSTRING
+              valueFrom:
+                configMapKeyRef:
+                  name: user-sjcita-config
+                  key: MONGODB_CONNSTRING
+            - name: AUTH_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: user-sjcita-config
+                  key: AUTH_URL
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
